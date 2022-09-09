@@ -15,7 +15,7 @@
   <repositories>
     <repository>
       <id>local-maven-repo</id>
-      <url>file:///${project.basedir}/lib</url>
+      <url>file:///${project.basedir}/local-maven-repo</url>
     </repository>
   </repositories>
 
@@ -24,7 +24,7 @@
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <!-- jar files destinations -->
-    <outDir>../dist</outDir>
+    <outDir>lib</outDir>
   </properties>
 
   <dependencies>

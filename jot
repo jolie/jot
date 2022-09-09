@@ -1,0 +1,45 @@
+#! /bin/bash
+
+function usage() {
+    cat <<USAGE
+
+    Usage: $0 [--params param file]
+
+    Options:
+        -p, --params:         parameter to passing to Jot service
+USAGE
+    exit 1
+}
+
+if [ $# -eq 0 ]; then
+    usage
+    exit 1
+fi
+
+PARAMS=
+SCRIPT_PARAMS=()
+
+while [ "$1" != "" ]; do
+    case $1 in
+    -p | --params)
+        shift
+        PARAMS=$1
+        ;;
+    -h | --help)
+        usage
+        ;;
+    *)
+        SCRIPT_PARAMS+=($1)
+        shift
+        SCRIPT_PARAMS+=($1)
+        ;;
+    esac
+    shift
+done
+
+if [[ $PARAMS == "" ]]; then
+    echo "You must provide a jolie parameter file";
+    exit 1;
+fi
+
+/usr/bin/env -S jolie --params $PARAMS ./jot.ol ${SCRIPT_PARAMS[@]}

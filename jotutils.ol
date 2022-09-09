@@ -20,6 +20,6 @@ service JotUtils {
 		interfaces: JotUtilsInterface
 	}
 	foreign java {
-		class: "jot.JotUtils.JotUtils"
+		class: "jolie.jot.JotUtils"
 	}
 }

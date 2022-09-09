@@ -1,12 +1,17 @@
 {
-  "name": "jot",
+  "name": "@jolie/jot",
   "version": "0.1.0",
   "description": "Jolie Testing suit",
-  "main": "main.ol",
+  "author": "Narongrit Unwerawattana",
+  "main": "jot",
   "test": "echo \"Error: no test specified\" && exit 1",
   "repo": "https://github.com/jolie/jot",
   "keywords": ["jolie", "microservice", "testing"],
-  "author": "Narongrit Unwerawattana",
+  "scripts": {
+    "prepack": "npx --package=@jolie/jpm -- jpm hooks:prepack",
+    "preinstall": "npx --package=@jolie/jpm -- jpm hooks:preinstall",
+    "postpublish": "shx rm -rf dist"
+  },
   "license": "ISC",
   "jolie": {
     "dependencies": {},
