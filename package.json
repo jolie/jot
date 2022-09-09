@@ -1,0 +1,18 @@
+{
+  "name": "jot",
+  "version": "0.1.0",
+  "description": "Jolie Testing suit",
+  "main": "main.ol",
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "repo": "https://github.com/jolie/jot",
+  "keywords": ["jolie", "microservice", "testing"],
+  "author": "Narongrit Unwerawattana",
+  "license": "ISC",
+  "jolie": {
+    "dependencies": {},
+    "maven": {
+      "dependencies": {},
+      "indirectDependencies": {}
+    }
+  }
+}
