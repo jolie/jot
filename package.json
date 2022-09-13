@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "prepack": "npx --package=@jolie/jpm -- jpm hooks:prepack",
-    "postpublish": "shx rm -rf dist"
+    "postpublish": "shx rm -rf lib"
   },
   "license": "ISC",
   "jolie": {
