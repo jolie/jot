@@ -9,7 +9,6 @@
   "keywords": ["jolie", "microservice", "testing"],
   "scripts": {
     "prepack": "npx --package=@jolie/jpm -- jpm hooks:prepack",
-    "preinstall": "npx --package=@jolie/jpm -- jpm hooks:preinstall",
     "postpublish": "shx rm -rf dist"
   },
   "license": "ISC",
