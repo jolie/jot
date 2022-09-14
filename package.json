@@ -11,6 +11,9 @@
     "microservice",
     "testing"
   ],
+  "bin": {
+    "jot": "./bin/jot.sh"
+  },
   "scripts": {
     "prepack": "npx --package=@jolie/jpm -- jpm hooks:prepack",
     "postpublish": "shx rm -rf lib"

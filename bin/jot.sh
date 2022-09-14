@@ -50,4 +50,4 @@ while [ -L "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR=$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )
 
-/usr/bin/env -S jolie --params $PARAMS $DIR/jot.ol ${SCRIPT_PARAMS[@]}
+/usr/bin/env -S jolie --params $PARAMS "$(dirname "$DIR")/jot.ol" ${SCRIPT_PARAMS[@]}
