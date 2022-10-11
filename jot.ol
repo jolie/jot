@@ -10,7 +10,7 @@ type Params {
 }
 
 service Jot( params:Params ) {
-	embed File as files
+	embed File as file
 	embed JotUtils as jotUtils
 	embed Reflection as reflection
 	embed StringUtils as stringUtils
@@ -28,24 +28,26 @@ service Jot( params:Params ) {
 	
 	main {
 		run()() {
-			list@files( {
+			getFileSeparator@file()( sep )
+			
+			list@file( {
 				directory = params.testsPath
 				regex = ".*\\.ol"
 				recursive = true
 			} )( foundFiles )
 			for( filepath in foundFiles.result ) {
-				findTestOperations@jotUtils( params.testsPath + "/" + filepath )( result )
+				findTestOperations@jotUtils( params.testsPath + sep + filepath )( result )
 				for( testServiceInfo in result.services ) {
 					if( #testServiceInfo.tests > 0 ) {
 						testParams = void
-						for (p in params.params._){
+						for (p in params.params){
 							if (p.name == filepath) {
 								testParams << p.params
 							}
 						}
 						// load the testService in the outputPort testService
 						loadEmbeddedService@runtime( {
-							filepath = params.testsPath + "/" + filepath
+							filepath = params.testsPath + sep + filepath
 							type = "Jolie"
 							service = result.services.name
 							params << testParams
