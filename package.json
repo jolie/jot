@@ -12,7 +12,7 @@
     "testing"
   ],
   "bin": {
-    "jot": "./bin/jot.sh"
+    "jot": "jolie ./launcher.ol"
   },
   "scripts": {
     "prepack": "npx --package=@jolie/jpm -- jpm hooks:prepack",
