@@ -60,7 +60,7 @@
           </execution>
         </executions>
         <configuration>
-          <finalName>${project.artifactId}-${project.version}</finalName>
+          <finalName>${project.artifactId}</finalName>
           <outputDirectory>${outDir}</outputDirectory>
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
