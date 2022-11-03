@@ -45,7 +45,7 @@ service Launcher {
 		getRealServiceDirectory@file()( home )
 		getFileSeparator@file()( sep )
 
-		loadLibrary@runtime( home + sep + "lib" + sep + "jolieslicer.jar" )()
+		loadLibrary@runtime( home + sep + "lib" + sep + "jot-utils.jar" )()
 		loadEmbeddedService@runtime( {
 			filepath = home + sep + "jot.ol"
 			service = "Jot"
