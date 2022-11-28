@@ -24,9 +24,9 @@ service main( ) {
 		interfaces: MyTestInterface
 	}
     main{
-		[ op1()() {
-			println@console( "op1 is called" )()
-		} ]
+		// [ op1()() {
+		// 	println@console( "op1 is called" )()
+		// } ]
 		[ op2()() {
 			println@console( "op2 is called" )()
 		} ]

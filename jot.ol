@@ -54,22 +54,26 @@ service Jot( params:Params ) {
 						} )( Operation.location )
 
 						for( op in testServiceInfo.beforeAll ) {
+							install(default => println@console("ERROR: error occur during invoking operation '" + op + "'")())
 							invokeRRUnsafe@reflection( { operation = op, outputPort="Operation" } )()
 						}
 						for( test in testServiceInfo.tests ) {
 							for( beforeEach in testService.beforeEach ) {
+								install(default => println@console("ERROR: error occur during invoking operation '" + beforeEach + "'")())
 								invokeRRUnsafe@reflection( { operation = beforeEach, outputPort="Operation" } )()
 							}
 							scope(t){
-								install(default => println@console("Test failed on operation: " + test + " error: " + t.default)())
+								install(default => println@console("ERROR: Test failed on operation: '" + test + "' error: " + t.default)())
 								invokeRRUnsafe@reflection( { operation = test, outputPort="Operation" } )()
 							}
 
 							for( afterEach in testService.afterEach ) {
+								install(default => println@console("ERROR: error occur during invoking operation '" + afterEach + "'")())
 								invokeRRUnsafe@reflection( { operation = afterEach, outputPort="Operation" } )()
 							}
 						}
 						for( op in testServiceInfo.afterAll ) {
+							install(default => println@console("ERROR: error occur during invoking operation '" + op + "'")())
 							invokeRRUnsafe@reflection( { operation = op, outputPort="Operation" } )()
 						}
 					}
