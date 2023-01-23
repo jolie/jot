@@ -1,6 +1,6 @@
 from assertions import Assertions
 from console import Console
-
+from string-utils import StringUtils
 
 interface MyTestInterface {
 RequestResponse:
@@ -17,6 +17,7 @@ service main( ) {
 
 	embed Assertions as assertions
 	embed Console as console
+	embed StringUtils as stringUtils
 	execution: sequential
 
 	inputPort Input {
@@ -25,18 +26,25 @@ service main( ) {
 	}
     main{
 		// [ op1()() {
-		// 	println@console( "op1 is called" )()
+		// 	nullProcess
+		// 	// println@console( "op1 is called" )()
 		// } ]
+		
 		[ op2()() {
-			println@console( "op2 is called" )()
+			nullProcess
+			// println@console( "op2 is called" )()
 		} ]
         
 		[ testBlah()() {
-            equals@assertions({
-                actual = 1
-                expected = 1
-            })()
-			println@console( "testBlah is correct!" )()
+			scope(test){
+				install( default => 
+					throw( TestFailed, "expected 2" )
+				)
+				equals@assertions({
+					actual = 1
+					expected = 2
+				})()
+			}
 		} ]
     }
 }

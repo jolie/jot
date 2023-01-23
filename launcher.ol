@@ -1,4 +1,4 @@
-#!/usr/bin/env jolie
+#!/usr/bin/env -S jolie --log severe
 
 /*
    Copyright 2020-2021 Fabrizio Montesi <famontesi@gmail.com>
@@ -40,10 +40,14 @@ service Launcher {
             filename = args[0]
             format = "json"
         } )( config )
-
 		
 		getRealServiceDirectory@file()( home )
 		getFileSeparator@file()( sep )
+
+		if ( !is_defined(config.reporter) ){
+			config.reporter.path = home + sep + "reporters" + sep + "spec.ol"
+			config.reporter.service = "SpecReporter"
+		}
 
 		loadLibrary@runtime( home + sep + "lib" + sep + "jot-utils.jar" )()
 		loadEmbeddedService@runtime( {
@@ -52,6 +56,9 @@ service Launcher {
 			params -> config
 		} )(wrapper.location)
 
-		run@wrapper()()
+		scope( runner ){
+			install( this => nullProcess )
+			run@wrapper()()
+		}
 	}
 }
