@@ -95,8 +95,10 @@ service Jot( params:Params ) {
 						if( #testServiceInfo.tests > 0 ) {
 							testParams = void
 							for (p in params.params){
-								if (p.name == filepath) {
-									testParams << p.params
+								if ( is_defined(p.(filepath)) ) {
+									if (p.(filepath).name == result.services.name) {
+										testParams << p.(filepath).params
+									}
 								}
 							}
 							// load the testService in the outputPort testService

@@ -2,6 +2,10 @@ from assertions import Assertions
 from console import Console
 from string-utils import StringUtils
 
+type params {
+	name: string
+}
+
 interface MyTestInterface {
 RequestResponse:
 	///@BeforeAll
@@ -10,10 +14,12 @@ RequestResponse:
 	op2,
 
 	///@Test
-	testBlah(void)(void) throws TestFailed(string)
+	testBlah(void)(void) throws TestFailed(string),
+	///@Test
+	testParams(void)(void) throws TestFailed(string)
 }
 
-service main( ) {
+service main( p : params ) {
 
 	embed Assertions as assertions
 	embed Console as console
@@ -24,11 +30,12 @@ service main( ) {
 		location: "local"
 		interfaces: MyTestInterface
 	}
+
     main{
-		// [ op1()() {
-		// 	nullProcess
-		// 	// println@console( "op1 is called" )()
-		// } ]
+		[ op1()() {
+			nullProcess
+			// println@console( "op1 is called" )()
+		} ]
 		
 		[ op2()() {
 			nullProcess
@@ -41,8 +48,20 @@ service main( ) {
 					throw( TestFailed, "expected 2" )
 				)
 				equals@assertions({
-					actual = 1
+					actual = 2
 					expected = 2
+				})()
+			}
+		} ]
+        
+		[ testParams()() {
+			scope(test){
+				install( default => 
+					throw( TestFailed, "sss" )
+				)
+				equals@assertions({
+					actual = p.name
+					expected = "sss"
 				})()
 			}
 		} ]

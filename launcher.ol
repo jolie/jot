@@ -1,4 +1,4 @@
-#!/usr/bin/env -S jolie --log severe
+#!/usr/bin/env -S jolie
 
 /*
    Copyright 2020-2021 Fabrizio Montesi <famontesi@gmail.com>
