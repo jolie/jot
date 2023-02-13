@@ -123,7 +123,7 @@ service Jot( params:Params ) {
 								}
 							}
 							for( test in testServiceInfo.tests ) {
-								for( beforeEach in testService.beforeEach ) {
+								for( beforeEach in testServiceInfo.beforeEach ) {
 									scope ( bfEach ){
 										install( default => 
 											eventTestFail@reporter( { title = "[beforeEach] " + test error = bfEach.default } ) 
@@ -142,7 +142,7 @@ service Jot( params:Params ) {
 									eventTestPass@reporter({ title = test })
 								}
 
-								for( afterEach in testService.afterEach ) {
+								for( afterEach in testServiceInfo.afterEach ) {
 									scope ( afEach ){
 										install( default => 
 											eventTestFail@reporter( { title = "[afterEach] " + afterEach error = afEach.default } )
