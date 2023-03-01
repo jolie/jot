@@ -70,6 +70,8 @@ service Jot( params:Params ) {
 				service = params.reporter.service
 			} )( reporter.location )
 
+			eventRunBegin@reporter()
+
 			getFileSeparator@file()( sep )
 			
 			list@file( {
@@ -171,6 +173,7 @@ service Jot( params:Params ) {
 					}
 				}
 			}
+			eventRunEnd@reporter()
 		}
 	}
 }

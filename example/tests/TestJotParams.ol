@@ -2,14 +2,17 @@ from assertions import Assertions
 from console import Console
 from string-utils import StringUtils
 
-interface MyTestInterface {
-RequestResponse:
-
-	///@Test
-	testSimple(void)(void) throws TestFailed(string)
+type params {
+	name: string
 }
 
-service main( ) {
+interface MyTestInterface {
+RequestResponse:
+	///@Test
+	testParams(void)(void) throws TestFailed(string)
+}
+
+service main( p : params ) {
 
 	embed Assertions as assertions
 	embed Console as console
@@ -22,15 +25,14 @@ service main( ) {
 	}
 
     main{
-        
-		[ testSimple()() {
+		[ testParams()() {
 			scope(test){
 				install( default => 
-					throw( TestFailed, "expected 2" )
+					throw( TestFailed, "expected jot" )
 				)
 				equals@assertions({
-					actual = 2
-					expected = 2
+					actual = p.name
+					expected = "jot"
 				})()
 			}
 		} ]

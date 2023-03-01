@@ -1,11 +1,19 @@
 {
-	"testsPath": "example/tests",
+	"testsPath": "tests",
 	"params": {
 		"TestJot.ol": [
 			{
 				"name": "main",
 				"params": {
 					"name": "sss"
+				}
+			}
+		],
+		"TestJotParams.ol": [
+			{
+				"name": "main",
+				"params": {
+					"name": "jot"
 				}
 			}
 		]

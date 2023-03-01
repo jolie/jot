@@ -1,4 +1,5 @@
 from values import Values
+from string-utils import StringUtils
 
 type AssertionRequest {
 	actual:undefined
@@ -14,7 +15,8 @@ service Assertions {
 	execution: concurrent
 
 	embed Values as values
-
+	embed StringUtils as stringUtils
+	
 	inputPort Input {
 		location: "local"
 		interfaces: AssertionsInterface
@@ -27,7 +29,7 @@ service Assertions {
 	main {
 		equals( request )() {
 			if( !equals@values( { fst -> request.expected, snd -> request.actual } ) ) {
-				throw( AssertionError, "Bloody hell!" ) //, diff@values( request ) )
+				throw( AssertionError, valueToPrettyString@stringUtils(request) ) //, diff@values( request ) )
 			}
 		}
 	}
