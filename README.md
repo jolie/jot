@@ -12,7 +12,7 @@ To execute the software and generate the results for the artefact evaluation, pl
 
 ## Requirements
 
-To run the demo, it's necessary to have installed Bash and Docker with Docker compose.
+To run the evaluation, it's necessary to have installed Bash and Docker with Docker compose.
 
 ## Procedure
 
