@@ -1,0 +1,4 @@
+{
+	"location": "socket://localhost:8080",
+	"customerCoreLocation": "socket://customer-core:8080"
+}

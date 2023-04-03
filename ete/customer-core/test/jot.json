@@ -1,0 +1,31 @@
+{
+  "testsPath": "test",
+  "params": {
+    "CustomerInformationHolderTests.ol": [
+      {
+        "name": "TestCustomerCore",
+        "params": {
+          "location": "socket://localhost:11112",
+          "repository": {
+            "connectionInfo": {
+              "username": "",
+              "password": "",
+              "host": "",
+              "database": "resources/db/db.db",
+              "driver": "sqlite"
+            }
+          },
+          "cityLookupService": {
+            "csvLocation": "resources/db/cities_by_postalcode_switzerland.csv"
+          }
+        }
+      }
+    ],
+    "lakesidetest.ol": [
+      {
+        "name": "TestCustomerCore",
+        "params": {}
+      }
+    ]
+  }
+}

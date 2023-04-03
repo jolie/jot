@@ -1,0 +1,27 @@
+{
+  "name": "customer-management",
+  "version": "1.0.0",
+  "description": "",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jot test/jot.json",
+    "start": "jolie --params params.json main.ol"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "jolie": {
+    "dependencies": {
+      "customer-core": "../customer-core"
+    },
+    "maven": {
+      "dependencies": {},
+      "indirectDependencies": {}
+    }
+  },
+  "dependencies": {
+    "@jolie/jot": "^0.0.15"
+  }
+}

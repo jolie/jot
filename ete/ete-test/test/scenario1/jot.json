@@ -1,0 +1,11 @@
+{
+  "testsPath": ".",
+  "params": {
+    "test.ol": [
+      {
+        "name": "Main",
+        "params": {}
+      }
+    ]
+  }
+}

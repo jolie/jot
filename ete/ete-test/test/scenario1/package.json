@@ -1,0 +1,29 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "description": "",
+  "main": "test.ol",
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "repo": "",
+  "keywords": [],
+  "author": "fmontesi",
+  "license": "ISC",
+  "scripts": {
+    "test": "jot jot.json"
+  },
+  "jolie": {
+    "maven": {
+      "dependencies": {},
+      "indirectDependencies": {}
+    },
+    "dependencies": {
+      "customer-core": "../../customer-core",
+      "customer-management": "../../customer-management",
+      "customer-self-service": "../../customer-self-service",
+      "assertions": "../../assertions"
+    }
+  },
+  "dependencies": {
+    "@jolie/jot": "^0.0.12"
+  }
+}

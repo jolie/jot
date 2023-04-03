@@ -1,0 +1,4 @@
+{
+	"location": "socket://localhost:11114",
+	"customerCoreLocation": "socket://localhost:11112"
+}

@@ -1,0 +1,45 @@
+services:
+  customer-core:
+    build:
+      context: ../customer-core
+    volumes:
+      - ./config/customer-core:/config
+
+  customer-management:
+    build:
+      context: ..
+      dockerfile: customer-management/Dockerfile
+    depends_on:
+      - customer-core
+    expose:
+      - 8080
+    volumes:
+      - ./config/customer-management:/config
+      - ../customer-core:/app/packages/customer-core
+
+  customer-self-service:
+    build:
+      context: ..
+      dockerfile: customer-self-service/Dockerfile
+    depends_on:
+      - customer-core
+    expose:
+      - 8080
+    volumes:
+      - ./config/customer-self-service:/config
+      - ../customer-core:/app/packages/customer-core
+
+  test1:
+    build:
+      context: ..
+      dockerfile: ete-test/test/scenario1/Dockerfile
+    depends_on:
+      - customer-management
+
+  test2:
+    build:
+      context: ..
+      dockerfile: ete-test/test/scenario2/Dockerfile
+    depends_on:
+      - customer-management
+      - customer-self-service
