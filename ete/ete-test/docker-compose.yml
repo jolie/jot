@@ -29,14 +29,14 @@ services:
       - ./config/customer-self-service:/config
       - ../customer-core:/app/packages/customer-core
 
-  test1:
+  scenario1:
     build:
       context: ..
       dockerfile: ete-test/test/scenario1/Dockerfile
     depends_on:
       - customer-management
 
-  test2:
+  scenario2:
     build:
       context: ..
       dockerfile: ete-test/test/scenario2/Dockerfile
