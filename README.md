@@ -35,7 +35,7 @@ Provide a field in package.json script to invoke jot through `npm run`
   },
 ```
 
-then you can invoke jot using `npm run [script key]`
+then you can invoke jot using `npm run test`
 
 ```bash
 npm run test
@@ -120,23 +120,23 @@ type Stats {
     interface that jot will use to communicate with the reporter
  */
 interface ReporterInterface {
-	OneWay: 
+	RequestResponse: 
         // fires when the test runner finished it's instantiation
-        eventRunBegin(void),
+        eventRunBegin(void)(void),
 
         // fires when the test operation pass
-        eventTestPass(Test),
+        eventTestPass(Test)(void),
 
         // fires when the test operation fail
-        eventTestFail(TestFailed),
+        eventTestFail(TestFailed)(void),
 
         // fires when a testing service finished it's instantiation
-        eventServiceBegin(Service),
+        eventServiceBegin(Service)(void),
 
         // fires when a testing service completes all the testing operations
-        eventServiceEnd(Stats),
+        eventServiceEnd(Stats)(void),
 
         // fires when the test runner complete all the testing services
-        eventRunEnd(void)
+        eventRunEnd(void)(void)
 }
 ```

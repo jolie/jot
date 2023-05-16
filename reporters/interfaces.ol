@@ -13,11 +13,11 @@ type Service {
 }
 
 interface ReporterInterface {
-	OneWay: 
-        eventRunBegin(void),
-        eventTestPass(Test),
-        eventTestFail(TestFailed),
-        eventServiceBegin(Service),
-        eventServiceEnd(Stats),
-        eventRunEnd(void)
+	RequestResponse: 
+        eventRunBegin(void)(void),
+        eventTestPass(Test)(void),
+        eventTestFail(TestFailed)(void),
+        eventServiceBegin(Service)(void),
+        eventServiceEnd(Stats)(void),
+        eventRunEnd(void)(void)
 }

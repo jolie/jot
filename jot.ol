@@ -70,15 +70,21 @@ service Jot( params:Params ) {
 				service = params.reporter.service
 			} )( reporter.location )
 
-			eventRunBegin@reporter()
+			eventRunBegin@reporter()()
 
 			getFileSeparator@file()( sep )
 			
-			list@file( {
-				directory = params.test
-				regex = ".*\\.ol"
-				recursive = true
-			} )( foundFiles )
+			scope (listFile) {
+				install( NoSuchFileException => 
+					println@console("Unable to locate test path looking for path: " + params.test)()
+					exit
+				)
+				list@file( {
+					directory = params.test
+					regex = ".*\\.ol"
+					recursive = true
+				} )( foundFiles )
+			}
 			for( filepath in foundFiles.result ) {
 
 				findTestOperations@jotUtils( params.test + sep + filepath )( result )
@@ -114,12 +120,12 @@ service Jot( params:Params ) {
 							stats.start = getCurrentTimeMillis@time()
 
 							state.services++
-							eventServiceBegin@reporter( { title= filepath + " -> " + result.services.name } )
+							eventServiceBegin@reporter( { title= filepath + " -> " + result.services.name } )()
 
 							for( op in testServiceInfo.beforeAll ) {
 								scope ( bfAll ){
 									install( default => 
-										eventTestFail@reporter( { title = "[beforeAll] " + op error = bfAll.default } )
+										eventTestFail@reporter( { title = "[beforeAll] " + op error = bfAll.default } )()
 									)
 									invokeRRUnsafe@reflection( { operation = op, outputPort="Operation" } )()
 								}
@@ -128,7 +134,7 @@ service Jot( params:Params ) {
 								for( beforeEach in testServiceInfo.beforeEach ) {
 									scope ( bfEach ){
 										install( default => 
-											eventTestFail@reporter( { title = "[beforeEach] " + test error = bfEach.default } ) 
+											eventTestFail@reporter( { title = "[beforeEach] " + test error = bfEach.default } )()
 										)
 										invokeRRUnsafe@reflection( { operation = beforeEach, outputPort="Operation" } )()
 									}
@@ -136,18 +142,18 @@ service Jot( params:Params ) {
 								scope(t){
 									install( default => 
 										stats.failures++
-										eventTestFail@reporter( { title = test error = t.InvocationFault.name + ": " + t.InvocationFault.data } )
+										eventTestFail@reporter( { title = test error = t.InvocationFault.name + ": " + t.InvocationFault.data } )()
 									)
 									invokeRRUnsafe@reflection( { operation = test, outputPort="Operation" } )()
 									stats.tests++
 									stats.passes++
-									eventTestPass@reporter({ title = test })
+									eventTestPass@reporter({ title = test })()
 								}
 
 								for( afterEach in testServiceInfo.afterEach ) {
 									scope ( afEach ){
 										install( default => 
-											eventTestFail@reporter( { title = "[afterEach] " + afterEach error = afEach.default } )
+											eventTestFail@reporter( { title = "[afterEach] " + afterEach error = afEach.default } )()
 										)
 										invokeRRUnsafe@reflection( { operation = afterEach, outputPort="Operation" } )()
 									}
@@ -156,7 +162,7 @@ service Jot( params:Params ) {
 							for( op in testServiceInfo.afterAll ) {
 								scope ( afAll ){
 									install( default => 
-										eventTestFail@reporter( { title = "[afterAll] " + op error = afAll.default } )
+										eventTestFail@reporter( { title = "[afterAll] " + op error = afAll.default } )()
 									)
 									invokeRRUnsafe@reflection( { operation = op, outputPort="Operation" } )()
 								}
@@ -168,12 +174,12 @@ service Jot( params:Params ) {
 								failures = stats.failures
 								services = stats.services
 								durations = stats.durations
-							})
+							})()
 						}
 					}
 				}
 			}
-			eventRunEnd@reporter()
+			eventRunEnd@reporter()()
 		}
 	}
 }

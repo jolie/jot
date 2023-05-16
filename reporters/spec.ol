@@ -19,19 +19,19 @@ service SpecReporter {
 
     main {
 
-        [eventRunBegin() ]{
+        [eventRunBegin()() {
             nullProcess
-        }
+        }]
 
-        [eventTestPass(test)] {
+        [eventTestPass(test)(){
             for ( i = 0, i < global.indents, i++){
                 print@console("  ")()
             }
             print@console("  ")()
             println@console("pass " + test.title)()
-        }
+        }] 
 
-        [eventTestFail(testFailed)] {
+        [eventTestFail(testFailed)(){
             if (testFailed.error == "InvocationFault"){
                 error = "InvocationFault: please ensure that operation is available on target test module" 
             } else {
@@ -42,22 +42,22 @@ service SpecReporter {
             }
             print@console("  ")()
             println@console("failed " + testFailed.title + ", " + error)()
-        }
+        }] 
 
-        [eventServiceBegin(service)] {
+        [eventServiceBegin(service)(){
             global.indents++
             print@console("  ")()
             println@console(service.title)()
-        }
+        }] 
 
-        [eventServiceEnd(stats)]{
+        [eventServiceEnd(stats)(){
             print@console("  ")()
-            println@console("passes " + stats.passes + " (" + stats.durations + ") failures " + stats.failures)()
-        }
+            println@console("passes " + stats.passes + " (" + stats.durations + "ms) failures " + stats.failures)()
+        }]
 
-        [eventRunEnd() ]{
+        [eventRunEnd()(){
             nullProcess
-        }
+        }]
 
     }
     
