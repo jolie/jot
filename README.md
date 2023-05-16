@@ -47,19 +47,19 @@ npm run test
 
 ```json
 {
-	"testsPath": "tests", // path to test directory
-	"params": { // parameter for jot, key of this object defines the Jolie service that jot will launch
-		"service.ol": [ 
-			{
-				"name": "main", // name of the service
-				"params": { } // parameter to pass to the `main` service that reside in TestJot.ol
-			}
-		]
-	},
-    "reporters": { // [OPTIONAL] reporter configuration
-        "path": "", // path to custom reporter module
-        "service": "" // reporter service
-    }
+  "test": "test", // path to test directory. Default: "test"
+  "params": { // parameter for jot, key of this object defines the Jolie service that jot will launch
+    "service.ol": [ 
+      {
+        "name": "main", // name of the service
+        "params": { } // parameter to pass to the `main` service that reside in TestJot.ol
+      }
+    ]
+  },
+  "reporters": { // [OPTIONAL] reporter configuration
+    "path": "", // path to custom reporter module
+    "service": "" // reporter service
+  }
 }
 ```
 

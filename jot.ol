@@ -11,12 +11,12 @@ from .reporters.interfaces import ReporterInterface
 	Parameter from json's configuration
 */
 type Params {
-	testsPath: string
-	reporter? {
-		path: string
-		service: string
+	test: string // Path to test directory
+	reporter? { // Reporter information
+		path: string // Path to reporter directory
+		service: string // Reporter's service name
 	}
-	params: undefined
+	params: undefined // Parameter for target services
 }
 
 /**
@@ -75,13 +75,13 @@ service Jot( params:Params ) {
 			getFileSeparator@file()( sep )
 			
 			list@file( {
-				directory = params.testsPath
+				directory = params.test
 				regex = ".*\\.ol"
 				recursive = true
 			} )( foundFiles )
 			for( filepath in foundFiles.result ) {
 
-				findTestOperations@jotUtils( params.testsPath + sep + filepath )( result )
+				findTestOperations@jotUtils( params.test + sep + filepath )( result )
 
 				if (#result.services > 0){
 
@@ -105,7 +105,7 @@ service Jot( params:Params ) {
 							}
 							// load the testService in the outputPort testService
 							loadEmbeddedService@runtime( {
-								filepath = params.testsPath + sep + filepath
+								filepath = params.test + sep + filepath
 								type = "Jolie"
 								service = result.services.name
 								params << testParams

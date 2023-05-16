@@ -49,6 +49,10 @@ service Launcher {
 			config.reporter.service = "SpecReporter"
 		}
 
+		if ( !is_defined(config.test) ){
+			config.test = "test"
+		}
+
 		loadLibrary@runtime( home + sep + "lib" + sep + "jot-utils.jar" )()
 		loadEmbeddedService@runtime( {
 			filepath = home + sep + "jot.ol"
