@@ -9,15 +9,6 @@ on:
       - v**.**.**
 
 jobs:
-  #build:
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - uses: actions/checkout@v3
-  #    - uses: actions/setup-node@v3
-  #      with:
-  #        node-version: 16
-  #    - run: npm ci
-  #    - run: npm test
 
   publish-npm:
     runs-on: ubuntu-latest
@@ -27,6 +18,20 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Install jsdt
+        run: |
+          mvn install:install-file \
+            -Dfile=local-maven-repo/jsdt-core-0.2.jar \
+            -DgroupId=jsdt \
+            -DartifactId=jsdt-core \
+            -Dversion=0.2.0 \
+            -Dpackaging=jar \
+            -DgeneratePom=true
       - run: npm ci
       - run: npm publish
         env:
