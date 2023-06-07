@@ -28,7 +28,7 @@ service SpecReporter {
                 print@console("  ")()
             }
             print@console("  ")()
-            println@console("pass " + test.title)()
+            println@console("✅ pass " + test.title)()
         }] 
 
         [eventTestFail(testFailed)(){
@@ -41,7 +41,7 @@ service SpecReporter {
                 print@console("  ")()
             }
             print@console("  ")()
-            println@console("failed " + testFailed.title + ", " + error)()
+            println@console("❌ failed " + testFailed.title + ", " + error)()
         }] 
 
         [eventServiceBegin(service)(){
@@ -53,6 +53,7 @@ service SpecReporter {
         [eventServiceEnd(stats)(){
             print@console("  ")()
             println@console("passes " + stats.passes + " (" + stats.durations + "ms) failures " + stats.failures)()
+            global.indents = 0
         }]
 
         [eventRunEnd()(){
