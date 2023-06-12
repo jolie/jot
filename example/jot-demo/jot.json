@@ -1,0 +1,13 @@
+{
+    "testsPath": "test",
+    "params": {
+      "test.ol": [
+        {
+          "name": "TestSimpleCustomerCore",
+          "params": {
+            "location": "socket://localhost:3030"
+          }
+        }
+      ]
+    }
+  }
