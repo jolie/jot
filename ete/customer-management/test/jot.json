@@ -1,5 +1,5 @@
 {
-  "testsPath": "test",
+  "test": "test",
   "params": {
     "CustomerInformationHolderTests.ol": [
       {

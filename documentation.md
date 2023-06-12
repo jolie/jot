@@ -47,7 +47,7 @@ npm run test
 
 ```json
 {
-	"testsPath": "tests", // path to test directory
+	"test": "tests", // path to test directory
 	"params": { // parameter for jot, key of this object defines the Jolie service that jot will launch
 		"service.ol": [ 
 			{
