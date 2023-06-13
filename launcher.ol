@@ -38,13 +38,12 @@ service Launcher {
 		}
 		*/
 		config <<
-			if( is_defined( args[0] ) ) {
+			if( is_defined( args[0] ) )
 				readFile@file( { filename = args[0], format = "json" } )
-			} else if( exists@file( "jot.json" ) ) {
+			else if( exists@file( "jot.json" ) )
 				readFile@file( { filename = "jot.json", format = "json" } )
-			} else {
+			else
 				{}
-			}
 
 		getRealServiceDirectory@file()( home )
 		getFileSeparator@file()( sep )
