@@ -11,7 +11,7 @@ from .reporters.interfaces import ReporterInterface
 	Parameter from json's configuration
 */
 type Params {
-	test: string // Path to test directory
+	test?: string // Path to test directory
 	reporter? { // Reporter information
 		path: string // Path to reporter directory
 		service: string // Reporter's service name
