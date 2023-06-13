@@ -61,7 +61,7 @@ service Launcher {
 		loadEmbeddedService@runtime( {
 			filepath = home + sep + "jot.ol"
 			service = "Jot"
-			params -> config
+			params << config
 		} )(wrapper.location)
 
 		scope( runner ){
