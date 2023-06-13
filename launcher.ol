@@ -31,20 +31,25 @@ service Launcher {
 	embed Console as console
 
 	main {
-		if ( !is_defined( args[0] ) ){
+		/*
+		if( !is_defined( args[0] ) ) {
 			println@console("Usage: jot configuration_file.json")()
 			exit
 		}
+		*/
+		config <<
+			if( is_defined( args[0] ) ) {
+				readFile@file( { filename = args[0], format = "json" } )
+			} else if( exists@file( "jot.json" ) ) {
+				readFile@file( { filename = "jot.json", format = "json" } )
+			} else {
+				{}
+			}
 
-        readFile@file( {
-            filename = args[0]
-            format = "json"
-        } )( config )
-		
 		getRealServiceDirectory@file()( home )
 		getFileSeparator@file()( sep )
 
-		if ( !is_defined(config.reporter) ){
+		if( !is_defined(config.reporter) ) {
 			config.reporter.path = home + sep + "reporters" + sep + "spec.ol"
 			config.reporter.service = "SpecReporter"
 		}
