@@ -2,7 +2,16 @@
   "name": "@jolie/jot",
   "version": "0.0.23",
   "description": "Jolie Testing suit",
-  "author": "Narongrit Unwerawattana",
+  "contributors": [
+    {
+      "name": "Narongrit Unwerawattana"
+    },
+    {
+      "name": "Fabrizio Montesi",
+      "email": "famontesi@gmail.com",
+      "url": "https://www.fabriziomontesi.com"
+    }
+  ],
   "main": "jot",
   "test": "echo \"Error: no test specified\" && exit 1",
   "repo": "https://github.com/jolie/jot",
@@ -18,7 +27,7 @@
     "prepack": "npx --package=@jolie/jpm -- jpm hooks:prepack",
     "postpublish": "shx rm -rf lib"
   },
-  "license": "ISC",
+  "license": "LGPLv2.1",
   "jolie": {
     "dependencies": {},
     "maven": {
