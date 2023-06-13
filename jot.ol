@@ -16,7 +16,7 @@ type Params {
 		path: string // Path to reporter directory
 		service: string // Reporter's service name
 	}
-	params: undefined // Parameter for target services
+	params?: undefined // Parameter for target services
 }
 
 /**
@@ -101,7 +101,7 @@ service Jot( params:Params ) {
 
 					for( testServiceInfo in result.services ) {
 						if( #testServiceInfo.tests > 0 ) {
-							testParams = void
+							testParams << {}
 							for (p in params.params){
 								if ( is_defined(p.(filepath)) ) {
 									if (p.(filepath).name == result.services.name) {
