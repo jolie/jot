@@ -1,5 +1,7 @@
 # jot - Jolie testing suite
 
+![jot logo](./jot.png)
+
 `jot` is a command-line tool for testing Microservice Architectures(MSAs).
 The tool is developed using [Jolie](https://www.jolie-lang.org/), a service oriented programming language that empathize the structured linguistic approach to the programming of services.
 
