@@ -85,6 +85,7 @@ service Jot( params:Params ) {
 					recursive = true
 				} )( foundFiles )
 			}
+			isFail = false
 			for( filepath in foundFiles.result ) {
 
 				findTestOperations@jotUtils( params.test + sep + filepath )( result )
@@ -126,6 +127,7 @@ service Jot( params:Params ) {
 								scope ( bfAll ){
 									install( default => 
 										eventTestFail@reporter( { title = "[beforeAll] " + op error = bfAll.default } )()
+										isFail = true
 									)
 									invokeRRUnsafe@reflection( { operation = op, outputPort="Operation" } )()
 								}
@@ -135,6 +137,7 @@ service Jot( params:Params ) {
 									scope ( bfEach ){
 										install( default => 
 											eventTestFail@reporter( { title = "[beforeEach] " + test error = bfEach.default } )()
+											isFail = true
 										)
 										invokeRRUnsafe@reflection( { operation = beforeEach, outputPort="Operation" } )()
 									}
@@ -143,6 +146,7 @@ service Jot( params:Params ) {
 									install( default => 
 										stats.failures++
 										eventTestFail@reporter( { title = test error = t.InvocationFault.name + ": " + t.InvocationFault.data } )()
+										isFail = true
 									)
 									invokeRRUnsafe@reflection( { operation = test, outputPort="Operation" } )()
 									stats.tests++
@@ -154,6 +158,7 @@ service Jot( params:Params ) {
 									scope ( afEach ){
 										install( default => 
 											eventTestFail@reporter( { title = "[afterEach] " + afterEach error = afEach.default } )()
+											isFail = true
 										)
 										invokeRRUnsafe@reflection( { operation = afterEach, outputPort="Operation" } )()
 									}
@@ -163,6 +168,7 @@ service Jot( params:Params ) {
 								scope ( afAll ){
 									install( default => 
 										eventTestFail@reporter( { title = "[afterAll] " + op error = afAll.default } )()
+										isFail = true
 									)
 									invokeRRUnsafe@reflection( { operation = op, outputPort="Operation" } )()
 								}
@@ -180,6 +186,9 @@ service Jot( params:Params ) {
 				}
 			}
 			eventRunEnd@reporter()()
+			if (isFail) {
+				halt@runtime({status=1})()
+			}
 		}
 	}
 }
