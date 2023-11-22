@@ -65,7 +65,7 @@ npm run test
 }
 ```
 
-See [example](example) folder for basic usage in practice.
+See [examples](examples) folder for basic usage in practice.
 
 ## Annotation
 
