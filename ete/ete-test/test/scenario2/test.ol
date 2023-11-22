@@ -71,7 +71,6 @@ service Main {
 				actual = createSelfServiceResponse.firstName
 				expected = "Homer2"
 			} )()
-
 			
 			getCustomers@customerManagement( { filter = "Homer2" } )( responseGetCustomers )
 			equals@assertions( {

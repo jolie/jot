@@ -1,21 +1,24 @@
 from ..main import CustomerCoreInterface
 from console import Console
 
-interface MyTestInterface {
+interface TestInterface {
 RequestResponse:
-	/// @Test
-	testCreateCustomer(void)(void) throws TestFailed(string)
+    /// @Test
+    testCreateCustomer1(void)(void) throws TestFailed(string),
+    /// @Test
+    testCreateCustomer2(void)(void) throws TestFailed(string)
 }
 
 type TestParams {
     location: string
+    protocol: string
 }
 
-service TestSimpleCustomerCore( params:TestParams ) {
+service TestCustomerCore( params:TestParams ) {
 
     outputPort SimpleCustomerCore {
         location: params.location
-        protocol: sodep
+        protocol: params.protocol
         interfaces: CustomerCoreInterface
     }
 
@@ -24,14 +27,20 @@ service TestSimpleCustomerCore( params:TestParams ) {
 
 	inputPort Input {
 		location: "local"
-		interfaces: MyTestInterface
+		interfaces: TestInterface
 	}
 
     main {
-        [ testCreateCustomer()(){
-            createCustomer@SimpleCustomerCore( { name = "Max" surname = "Mustermann" } )( response )
+        [ testCreateCustomer1()(){
+            createCustomer@SimpleCustomerCore( { name = "Homer" surname = "Simpson" } )( response )
             if( response.id != 1 ){
                 throw TestFailed("expected 1, got " + response.id)
+            }
+        }]
+        [ testCreateCustomer2()(){
+            createCustomer@SimpleCustomerCore( { name = "Homer" surname = "Simpson" } )( response )
+            if( response.id != 2 ){
+                throw TestFailed("expected 2, got " + response.id)
             }
         }]
     }

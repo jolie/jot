@@ -11,16 +11,23 @@ requestResponse:
 }
 
 service Main {
+    execution: concurrent
 
-    inputPort ip {
+    inputPort ip0 {
         location: "socket://localhost:3030"
-        protocol: sodep
+        protocol: soap
+        interfaces: CustomerCoreInterface
+    }
+
+    inputPort ip1 {
+        location: "socket://localhost:3031"
+        protocol: jsonrpc
         interfaces: CustomerCoreInterface
     }
 
     main {
         createCustomer( request )( response ){
-            if ( request.name == "Max" && request.surname == "Mustermann" ){
+            if ( request.name == "Homer" && request.surname == "Simpson" ){
                 response << {
                     id = 1
                 }

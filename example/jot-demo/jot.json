@@ -2,9 +2,10 @@
     "params": {
       "test.ol": [
         {
-          "name": "TestSimpleCustomerCore",
+          "name": "TestCustomerCore",
           "params": {
-            "location": "socket://localhost:3030"
+            "location": "socket://localhost:3031",
+            "protocol": "jsonrpc"
           }
         }
       ]

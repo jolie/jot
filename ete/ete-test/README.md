@@ -3,5 +3,5 @@
 Run the test with following command.
 
 ```sh
-./docker_start.sh [test1 test2]
+./docker_build_start.sh [scenario1 scenario2]
 ```
