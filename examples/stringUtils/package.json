@@ -13,11 +13,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@jolie/jot": "^0.0.16"
+    "@jolie/jot": "^0.0.25"
   },
   "jolie": {
     "dependencies": {
-      "@jolie/jot": "0.0.16"
+      "@jolie/jot": "0.0.25"
     },
     "maven": {
       "dependencies": {},

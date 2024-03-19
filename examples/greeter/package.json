@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@jolie/jot": "^0.0.17",
-    "jot": "^2.0.2"
+    "@jolie/jot": "^0.0.25"
   }
 }
