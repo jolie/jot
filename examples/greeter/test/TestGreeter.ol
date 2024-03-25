@@ -37,7 +37,6 @@ service TestGreeter( params:TestParams ) {
             equals@assertions({
                 actual = response
                 expected = { greeting = "Hello, Alice" }
-                message = "expected 'Hello Alice', got '" + response + "'"
             })()
         }]
         [ test2()(){

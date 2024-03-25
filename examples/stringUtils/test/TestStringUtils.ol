@@ -25,8 +25,7 @@ service TestStringUtils( ) {
 			toLowerCase@stringUtils("AbC dEf_GhI")(result)
 			equals@assertions({
 				actual = result
-				expected = "abc *def_ghi"
-				message = "expected 'abc *def_ghi', got '" + result + "'."
+				expected = "abc def_ghi"
 			})()
 		} ]		
 		[ testLength()() {
@@ -34,7 +33,6 @@ service TestStringUtils( ) {
 			equals@assertions({
 				actual = result
 				expected = 8
-				message = "expected 8, got " + result + "."
 			})()
 		} ]
 	}
