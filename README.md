@@ -17,19 +17,19 @@ Using npm:
 npm install @jolie/jot
 ```
 
-<!-- Using jpm (this method allows user to run the command directly from cli) 
+Using docker:
 
 ```bash
-jpm install jot
+docker pull ghcr.io/jolie/jot:latest
 ```
- -->
 
-## Usage
+## Architecture
 
+![jot architecture](./jot-architecture.png)
 
 ## Running jot
 
-Provide a field in package.json script to invoke jot through `npm run`
+Provide a field in package.json script to invoke jot through `npm run`.
 
 ```bash
   "scripts": {
