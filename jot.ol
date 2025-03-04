@@ -39,8 +39,9 @@ service Jot( params:Params ) {
 	embed Runtime as runtime
 	embed Time as time
 
-    outputPort Operation {
-    }
+	outputPort Operation {
+	}
+
 	inputPort input {
 		location: "local"
 		RequestResponse: run
@@ -50,7 +51,7 @@ service Jot( params:Params ) {
 		Interfaces: ReporterInterface
 	}
 
-	execution{ sequential }
+	execution: sequential
 
 	init {
 		getRealServiceDirectory@file()( home )
